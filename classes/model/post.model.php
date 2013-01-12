@@ -20,4 +20,27 @@ class Model_Post extends \Nos\BlogNews\Model_Post
         parent::_init();
         static::$_behaviours['Nos\Orm_Behaviour_Urlenhancer']['enhancers'][] = 'sdrdis_timeline';
     }
+
+    public static function relations($specific = false)
+    {
+        $class = get_called_class();
+
+        static::$_has_many['children'] = array(
+            'key_from'       => static::$_primary_key[0], //cat_id
+            'model_to'       => $class,
+            'key_to'         => 'post_parent_id', //cat_parent_id
+            'cascade_save'   => false,
+            'cascade_delete' => false,
+        );
+
+        static::$_belongs_to['parent'] = array(
+            'key_from'       => 'post_parent_id', //cat_parent_id
+            'model_to'       => $class,
+            'key_to'         => static::$_primary_key[0], //cat_id
+            'cascade_save'   => false,
+            'cascade_delete' => false,
+        );
+
+        return parent::relations($specific);
+    }
 }
