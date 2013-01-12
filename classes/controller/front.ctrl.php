@@ -8,7 +8,7 @@
  * @link http://www.novius-os.org
  */
 
-namespace Nos\BlogNews\Blog;
+namespace Sdrdis\Timeline;
 
 class Controller_Front extends \Nos\BlogNews\Controller_Front
 {

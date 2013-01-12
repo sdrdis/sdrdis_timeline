@@ -9,34 +9,34 @@
  */
 
 return array(
-    'name'    => 'Blog',
-    'version' => '0.2',
+    'name'    => 'Timeline',
+    'version' => '0.1',
     'provider' => array(
-        'name' => 'Novius OS',
+        'name' => 'Sdrdis',
     ),
-    'namespace' => 'Nos\BlogNews\Blog',
+    'namespace' => 'Sdrdis\Timeline',
     'permission' => array(
 
     ),
     'launchers' => array(
-        'noviusos_blog' => array(
-            'name'    => 'Blog',
+        'noviusos_timeline' => array(
+            'name'    => 'Timeline',
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
-                    'url' => 'admin/noviusos_blog/appdesk',
+                    'url' => 'admin/sdrdis_timeline/appdesk',
                 ),
             ),
         ),
     ),
     'enhancers' => array(
-        'noviusos_blog' => array(
-            'title' => 'Blog',
+        'noviusos_timeline' => array(
+            'title' => 'Timeline',
             'desc'  => '',
-            'urlEnhancer' => 'noviusos_blog/front/main',
-            'iconUrl' => 'static/apps/noviusos_blog/img/blog-16.png',
+            'urlEnhancer' => 'sdrdis_timeline/front/main',
+            'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
             'dialog' => array(
-                'contentUrl' => 'admin/noviusos_blog/application/popup',
+                'contentUrl' => 'admin/sdrdis_timeline/application/popup',
                 'width' => 450,
                 'height' => 450,
                 'ajax' => true,
@@ -47,13 +47,13 @@ return array(
         'noviusos_blog' => array(
             'title' => 'Blog',
             'description'  => '',
-            'iconUrl' => 'static/apps/noviusos_blog/img/blog-16.png',
+            'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
             'action' => array(
                 'action' => 'nosTabs',
                 'tab' => array(
-                    'url' => 'admin/noviusos_blog/post/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}',
+                    'url' => 'admin/sdrdis_timeline/post/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}',
                     'label' => __('Add a post'),
-                    'iconUrl' => 'static/apps/noviusos_blog/img/blog-16.png',
+                    'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
                 ),
             ),
             'onDemand' => true,
@@ -68,8 +68,8 @@ return array(
         ),
     ),
     'icons' => array(
-        16 => '/static/apps/noviusos_blog/img/blog-16.png',
-        32 => '/static/apps/noviusos_blog/img/blog-32.png',
-        64 => '/static/apps/noviusos_blog/img/blog-64.png',
+        16 => 'static/apps/sdrdis_timeline/img/timeline-16.png',
+        32 => 'static/apps/sdrdis_timeline/img/timeline-32.png',
+        64 => 'static/apps/sdrdis_timeline/img/timeline-64.png',
     ),
 );

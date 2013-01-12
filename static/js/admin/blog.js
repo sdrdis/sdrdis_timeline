@@ -10,7 +10,7 @@ define([
              */
             blognews : {
                 namespace   : 'Nos\\BlogNews\\Blog',
-                dir         : 'noviusos_blog',
+                dir         : 'sdrdis_timeline',
                 icon_name   : 'blog'
             }
         };

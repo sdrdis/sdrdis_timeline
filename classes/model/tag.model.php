@@ -8,16 +8,16 @@
  * @link http://www.novius-os.org
  */
 
-namespace Nos\BlogNews\Blog;
+namespace Sdrdis\Timeline;
 
 class Model_Tag extends \Nos\BlogNews\Model_Tag
 {
     protected static $_primary_key = array('tag_id');
-    protected static $_table_name = 'nos_blog_tag';
+    protected static $_table_name = 'sdrdis_timeline_tag';
 
     public static function _init()
     {
         parent::_init();
-        static::$_behaviours['Nos\Orm_Behaviour_Urlenhancer']['enhancers'][] = 'noviusos_blog';
+        static::$_behaviours['Nos\Orm_Behaviour_Urlenhancer']['enhancers'][] = 'sdrdis_timeline';
     }
 }
