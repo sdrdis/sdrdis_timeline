@@ -9,4 +9,16 @@
  */
 
 $base = \Config::load('noviusos_blognews::controller/admin/category', true);
+
+
+
+
+
+$base['layout']['content']['expander']['params']['content']['params']['fields'][] = 'cat_color';
+
+$base['fields']['cat_color'] = array(
+    'label' => __('Color: '),
+    'renderer' => 'Sdrdis\Color\Renderer_Picker',
+);
+
 return $base;

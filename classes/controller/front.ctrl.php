@@ -12,4 +12,14 @@ namespace Sdrdis\Timeline;
 
 class Controller_Front extends \Nos\BlogNews\Controller_Front
 {
+    public function after($response)
+    {
+        $this->main_controller->addJavascript('http://www.google.com/jsapi', false);
+        $this->main_controller->addJavascript('static/apps/sdrdis_timeline/plugins/timeline-2.3.2/timeline-min.js', false);
+        $this->main_controller->addCss('static/apps/sdrdis_timeline/plugins/timeline-2.3.2/timeline.css');
+
+
+
+        return parent::after($response);
+    }
 }

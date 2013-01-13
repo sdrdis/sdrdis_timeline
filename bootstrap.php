@@ -21,6 +21,7 @@ $configFiles = array(
     'controller/admin/inspector/author',
     'controller/admin/inspector/category',
     'controller/admin/inspector/tag',
+    'controller/admin/inspector/post',
     'common/post',
     'common/tag',
     'model/admin/category',
@@ -35,3 +36,5 @@ foreach ($configFiles as $configFile) {
         $config = \Config::placeholderReplace($config, array('namespace' => $namespace, 'application_name' => $application_name, 'icon' => $icon));
     });
 }
+
+\View::redirect('noviusos_blognews::front/post/list', 'sdrdis_timeline::front/post/list');

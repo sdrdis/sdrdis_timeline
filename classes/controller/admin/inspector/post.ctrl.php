@@ -8,8 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-return array(
-    'use_recaptcha' => true,
-    'comment_default_state' => 'published',
-    'item_per_page' => false,
-);
+namespace Sdrdis\Timeline;
+
+class Controller_Admin_Inspector_Post extends \Nos\Controller_Inspector_Modeltree
+{
+}

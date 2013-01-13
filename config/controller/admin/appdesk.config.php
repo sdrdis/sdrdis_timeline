@@ -18,4 +18,6 @@ $base['i18n'] = array(
     'showNoItem' => __('No posts'),
     'showAll' => __('Show all posts'),
 );
+
+$base['appdesk']['appdesk']['defaultView'] = 'treeGrid';
 return $base;
