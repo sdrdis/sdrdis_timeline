@@ -54,8 +54,20 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
 <?php
     $data = array();
     foreach ($posts as $post) {
-        $start = $post->post_start ? 'new Date('.(\Date::create_from_string($post->post_start, 'mysql')->get_timestamp() * 1000).')' : 'minDate';
-        $end = $post->post_end ? 'new Date('.(\Date::create_from_string($post->post_end, 'mysql')->get_timestamp() * 1000).')' : 'maxDate';
+        $start_timestamp = $post->post_start ? \Date::create_from_string($post->post_start, 'mysql')->get_timestamp() : null;
+        $end_timestamp = $post->post_end ? \Date::create_from_string($post->post_end, 'mysql')->get_timestamp() : null;
+
+        if ($start_timestamp && $end_timestamp && $end_timestamp - $start_timestamp < 12 * 3600) {
+            $end_timestamp = $start_timestamp + 12 * 3600;
+        }
+
+        $start = $post->post_start ? 'new Date('.($start_timestamp * 1000).')' : 'minDate';
+        if ($start_timestamp && $end_timestamp && $end_timestamp - $start_timestamp < 0) { //15 * 24 * 3600
+            $end = '';
+        } else {
+            $end = $post->post_end ? 'new Date('.($end_timestamp * 1000).')' : 'maxDate';
+        }
+
         $classes = array();
         foreach ($post->categories as $category) {
             $classes[] = 'timeline-cat-'.$category->cat_id;
@@ -70,12 +82,12 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
         // specify options
         var options = {
             "width":  "100%",
-            "height": "250px",
+            "height": "300px",
             "style": "box",
             "min": minDate,
             "max": maxDate,
-            "intervalMin": 1000 * 60 * 60 * 24 * 15, // 15 days
-            "intervalMax": 1000 * 60 * 60 * 24 * 365
+            "intervalMin": 1000 * 60 * 60 * 24 * 3 // 30 days
+            //"intervalMax": 1000 * 60 * 60 * 24 * 365 * 1.5
         };
 
         // Instantiate our timeline object.
