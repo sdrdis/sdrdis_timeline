@@ -38,3 +38,4 @@ foreach ($configFiles as $configFile) {
 }
 
 \View::redirect('noviusos_blognews::front/post/list', 'sdrdis_timeline::front/post/list');
+\View::redirect('noviusos_blognews::admin/application/popup', 'sdrdis_timeline::admin/application/popup');

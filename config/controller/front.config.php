@@ -12,4 +12,5 @@ return array(
     'use_recaptcha' => true,
     'comment_default_state' => 'published',
     'item_per_page' => false,
+    'order_by'    => array('post_start' => 'DESC', 'post_id' => 'DESC'),
 );

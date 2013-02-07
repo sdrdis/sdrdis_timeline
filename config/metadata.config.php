@@ -19,7 +19,7 @@ return array(
 
     ),
     'launchers' => array(
-        'noviusos_timeline' => array(
+        'sdrdis_timeline' => array(
             'name'    => 'Timeline',
             'action' => array(
                 'action' => 'nosTabs',
@@ -30,7 +30,7 @@ return array(
         ),
     ),
     'enhancers' => array(
-        'noviusos_timeline' => array(
+        'sdrdis_timeline' => array(
             'title' => 'Timeline',
             'desc'  => '',
             'urlEnhancer' => 'sdrdis_timeline/front/main',
@@ -44,7 +44,7 @@ return array(
         ),
     ),
     'data_catchers' => array(
-        'noviusos_blog' => array(
+        'sdrdis_timeline' => array(
             'title' => 'Blog',
             'description'  => '',
             'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
