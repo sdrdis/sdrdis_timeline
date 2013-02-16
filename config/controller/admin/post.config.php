@@ -14,8 +14,8 @@ $base = \Config::load('noviusos_blognews::controller/admin/post', true);
 $base['layout']['menu'][__('Event informations')] = array('post_start', 'post_end');
 $base['layout']['menu'][__('Location')] = array('post_parent_id');
 
-$base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Meta'), __('Event informations'));
-$base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Meta'), __('URL (post address)'));
+$base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Properties'), __('Event informations'));
+$base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Properties'), __('URL (post address)'));
 
 $base['fields']['post_parent_id'] = array(
     'label' => __('Location: '),

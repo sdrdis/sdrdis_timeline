@@ -32,7 +32,6 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
 <div id="mytimeline"></div>
 
 <script type="text/javascript">
-    var timeline;
     google.load("visualization", "1");
 
     // Set callback to run when API is loaded
@@ -43,12 +42,33 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
         var now = new Date();
         var minDate = new Date(2006, 0, 1);
         var maxDate = now;
+        var startDate = null;
+        var endDate = null;
         // Create and populate a data table.
         var data = new google.visualization.DataTable();
         data.addColumn('datetime', 'start');
         data.addColumn('datetime', 'end');
         data.addColumn('string', 'content');
         data.addColumn('string', 'className');
+
+    <?php
+    if (isset($item)) {
+      $start_timestamp = $item->post_start ? \Date::create_from_string($item->post_start, 'mysql')->get_timestamp() : null;
+      $end_timestamp = $item->post_end ? \Date::create_from_string($item->post_end, 'mysql')->get_timestamp() : \Date::forge()->get_timestamp();
+
+      if ($start_timestamp) {
+        $interval_padding = ($end_timestamp - $start_timestamp) * 0.02;
+      }
+
+      if ($item->post_start) {
+         echo 'startDate = new Date('.((\Date::create_from_string($item->post_start, 'mysql')->get_timestamp() - $interval_padding) * 1000).');';
+      }
+      if ($item->post_end) {
+        echo 'endDate = new Date('.((\Date::create_from_string($item->post_end, 'mysql')->get_timestamp() + $interval_padding) * 1000).');';
+      }
+    }
+?>
+
 
         data.addRows([
 <?php
@@ -75,7 +95,7 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
 
         $data[] = '['.$start.', '.$end.', '.\Format::forge()->to_json($post->post_title).', '.\Format::forge()->to_json(implode($classes, ' ')).']';
     }
-    echo implode($data, ",\n")
+    echo implode($data, ",\n");
 ?>
         ]);
 
@@ -86,12 +106,14 @@ $categories = \Sdrdis\Timeline\Model_Category::find('all');
             "style": "box",
             "min": minDate,
             "max": maxDate,
-            "intervalMin": 1000 * 60 * 60 * 24 * 3 // 30 days
+            "intervalMin": 1000 * 60 * 60 * 24 * 3, // 30 days
+            "start": startDate,
+            "end": endDate
             //"intervalMax": 1000 * 60 * 60 * 24 * 365 * 1.5
         };
 
         // Instantiate our timeline object.
-        timeline = new links.Timeline(document.getElementById('mytimeline'));
+        var timeline = new links.Timeline(document.getElementById('mytimeline'));
 
         // Draw our timeline with the created data and options
         timeline.draw(data, options);

@@ -9,9 +9,10 @@
  */
 ?>
 <div class="blognews_post blognews_post_item">
-    <div class="blognews_primary_information">
-        <?= \View::forge('noviusos_blognews::front/post/thumbnail', array('item' => $item), false) ?>
-        <?= \View::forge('sdrdis_timeline::front/post/title', array('item' => $item), false) ?>
-        <?= \View::forge('noviusos_blognews::front/post/summary', array('item' => $item), false) ?>
-    </div>
+  <div class="blognews_primary_information">
+    <?= \View::forge('sdrdis_timeline::front/post/date_range', array('item' => $item), false) ?>
+    <?= \View::forge('noviusos_blognews::front/post/thumbnail', array('item' => $item), false) ?>
+    <?= \View::forge('sdrdis_timeline::front/post/title', array('item' => $item), false) ?>
+    <?= \View::forge('noviusos_blognews::front/post/summary', array('item' => $item), false) ?>
+  </div>
 </div>
