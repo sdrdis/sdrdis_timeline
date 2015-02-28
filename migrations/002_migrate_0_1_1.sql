@@ -1,4 +1,3 @@
-<?php
 /**
  * NOVIUS OS - Web OS for digital communication
  *
@@ -8,6 +7,5 @@
  * @link http://www.novius-os.org
  */
 
-$base = \Config::load('noviusos_blognews::config', true);
-$base['application_label'] = __('Timeline');
-return $base;
+ALTER TABLE `sdrdis_timeline_tag_post` DROP INDEX `post_id`;
+ALTER TABLE `sdrdis_timeline_tag_post` ADD PRIMARY KEY ( `post_id` , `tag_id` );

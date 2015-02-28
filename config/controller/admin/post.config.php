@@ -12,32 +12,26 @@ $base = \Config::load('noviusos_blognews::controller/admin/post', true);
 \Arr::set($base, 'tab.iconUrl', 'static/apps/sdrdis_timeline/img/timeline-16.png');
 
 $base['layout']['menu'][__('Event informations')] = array('post_start', 'post_end');
-$base['layout']['menu'][__('Location')] = array('post_parent_id');
+//$base['layout']['menu'][__('Location')] = array('post_parent_id');
 
 $base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Properties'), __('Event informations'));
 $base['layout']['menu'] = shiftplace($base['layout']['menu'], __('Properties'), __('URL (post address)'));
 
-$base['fields']['post_parent_id'] = array(
-    'label' => __('Location: '),
-    'renderer' => 'Nos\BlogNews\Renderer_Selector',
-    'renderer_options' => array(
-        'width'                 => '100%',
-        'height'                => '350px',
-        'inspector'             => 'admin/{{application_name}}/inspector/post',
-        'model'                 => '{{namespace}}\\Model_Post',
-        'sortable'              => false,
-        'main_column'           => 'post_title',
-    ),
-);
 
 $base['fields']['post_start'] = array(
     'label' => __('Start: '),
-    'renderer' => 'Sdrdis\Datetime\Renderer_Picker',
+    'renderer' => 'Nos\Renderer_Datetime_Picker',
+    'renderer_options' => array(
+        'null_allowed' => true,
+    ),
 );
 
 $base['fields']['post_end'] = array(
     'label' => __('End: '),
-    'renderer' => 'Sdrdis\Datetime\Renderer_Picker',
+    'renderer' => 'Nos\Renderer_Datetime_Picker',
+    'renderer_options' => array(
+        'null_allowed' => true,
+    ),
 );
 
 function shiftplace($a,$key1,$key2){
@@ -60,6 +54,5 @@ function shiftplace($a,$key1,$key2){
     }
     return $new;
 }
-
 
 return $base;

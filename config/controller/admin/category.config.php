@@ -10,15 +10,13 @@
 
 $base = \Config::load('noviusos_blognews::controller/admin/category', true);
 
-
-
-
+\Arr::set($base, 'tab.iconUrl', 'static/apps/sdrdis_timeline/img/timeline-16.png');
 
 $base['layout']['content']['expander']['params']['content']['params']['fields'][] = 'cat_color';
 
 $base['fields']['cat_color'] = array(
     'label' => __('Color: '),
-    'renderer' => 'Sdrdis\Color\Renderer_Picker',
+    'renderer' => '\Novius\Renderers\Renderer_Colorpicker',
 );
 
 return $base;

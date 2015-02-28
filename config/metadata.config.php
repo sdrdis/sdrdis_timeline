@@ -1,23 +1,26 @@
 <?php
 /**
- * NOVIUS OS - Web OS for digital communication
+ * Timeline
  *
- * @copyright  2011 Novius
- * @license    GNU Affero General Public License v3 or (at your option) any later version
- *             http://www.gnu.org/licenses/agpl-3.0.html
- * @link http://www.novius-os.org
+ * @copyright  Sébastien Drouyer
+ * @license    MIT
+ * @link http://sebastien.drouyer.com
  */
+
 
 return array(
     'name'    => 'Timeline',
-    'version' => '0.1',
+    'version' => '5 (Elche)',
     'provider' => array(
-        'name' => 'Sdrdis',
+        'name' => 'Sébastien Drouyer',
     ),
     'namespace' => 'Sdrdis\Timeline',
     'permission' => array(
 
     ),
+    'requires' => array('noviusos_blognews', 'noviusos_comments', 'novius_renderers'),
+    'extends' => array('noviusos_menu'),
+    'i18n_file' => 'sdrdis_timeline::metadata',
     'launchers' => array(
         'sdrdis_timeline' => array(
             'name'    => 'Timeline',
@@ -30,22 +33,34 @@ return array(
         ),
     ),
     'enhancers' => array(
+        'sdrdis_timeline_home' => array(
+            'title' => 'Links to timeline posts (e.g. for side column)',
+            'desc'  => '',
+            'enhancer' => 'sdrdis_timeline/front/home',
+            'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
+            'dialog' => array(
+                'contentUrl' => 'admin/sdrdis_timeline/enhancer/popup',
+                'width' => 370,
+                'height' => 410,
+                'ajax' => true,
+            ),
+        ),
         'sdrdis_timeline' => array(
             'title' => 'Timeline',
             'desc'  => '',
             'urlEnhancer' => 'sdrdis_timeline/front/main',
-            'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
+            'iconUrl' => 'static/apps/sdrdis_timeline/img/blog-16.png',
             'dialog' => array(
-                'contentUrl' => 'admin/sdrdis_timeline/application/popup',
-                'width' => 450,
-                'height' => 450,
+                'contentUrl' => 'admin/sdrdis_timeline/enhancer/popup',
+                'width' => 370,
+                'height' => 410,
                 'ajax' => true,
             ),
         ),
     ),
     'data_catchers' => array(
         'sdrdis_timeline' => array(
-            'title' => 'Blog',
+            'title' => 'Timeline',
             'description'  => '',
             'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
             'action' => array(
@@ -53,7 +68,7 @@ return array(
                 'tab' => array(
                     'url' => 'admin/sdrdis_timeline/post/insert_update/?context={{context}}&title={{urlencode:'.\Nos\DataCatcher::TYPE_TITLE.'}}&summary={{urlencode:'.\Nos\DataCatcher::TYPE_TEXT.'}}&thumbnail={{urlencode:'.\Nos\DataCatcher::TYPE_IMAGE.'}}',
                     'label' => __('Add a post'),
-                    'iconUrl' => 'static/apps/sdrdis_timeline/img/timeline-16.png',
+                    'iconUrl' => 'static/apps/sdrdis_timeline/img/blog-16.png',
                 ),
             ),
             'onDemand' => true,

@@ -1,0 +1,1 @@
+ALTER TABLE `sdrdis_timeline_post` ADD `post_start` DATETIME NULL DEFAULT NULL AFTER `post_virtual_name`, ADD `post_end` DATETIME NULL DEFAULT NULL AFTER `post_start`;

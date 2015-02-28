@@ -8,8 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-namespace Sdrdis\Timeline;
+namespace Sdrdis\Timeline\Migrations;
 
-class Controller_Admin_Application extends \Nos\BlogNews\Controller_Admin_Application
+class Behaviour_author extends \Nos\Migration
 {
 }

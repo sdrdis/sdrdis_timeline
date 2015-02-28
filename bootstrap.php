@@ -12,6 +12,7 @@
 
 $configFiles = array(
     'config',
+    'permissions',
     'controller/front',
     'controller/admin/appdesk',
     'controller/admin/application',
@@ -21,7 +22,6 @@ $configFiles = array(
     'controller/admin/inspector/author',
     'controller/admin/inspector/category',
     'controller/admin/inspector/tag',
-    'controller/admin/inspector/post',
     'common/post',
     'common/tag',
     'model/admin/category',
@@ -29,13 +29,44 @@ $configFiles = array(
 
 $namespace = 'Sdrdis\Timeline';
 $application_name = 'sdrdis_timeline';
-$icon = 'blog';
+$icon = 'timeline';
 
 foreach ($configFiles as $configFile) {
-    \Event::register_function('config|sdrdis_timeline::'.$configFile, function(&$config) use ($namespace, $application_name, $icon) {
-        $config = \Config::placeholderReplace($config, array('namespace' => $namespace, 'application_name' => $application_name, 'icon' => $icon));
+    \Event::register_function('config|sdrdis_timeline::'.$configFile, function (&$config) use ($namespace, $application_name, $icon, $configFile) {
+        
+        $config = \Config::placeholderReplace($config, array(
+            'namespace' => $namespace,
+            'application_name' => $application_name,
+            'icon' => $icon,
+        ), false);
     });
 }
+
+//Add 'blog_posts' relation on Model_User (related posts where the User is the author)
+\Event::register_function('config|noviusos_user::model/user', function (&$config) {
+    $config['has_many']['timeline_posts'] = array(
+        'key_from' => 'user_id',
+        'model_to' => 'Sdrdis\Timeline\Model_Post',
+        'key_to'   => 'post_author_id',
+    );
+
+    $config['behaviours']['Nos\Orm_Behaviour_Urlenhancer']['enhancers'][] = 'sdrdis_timeline';
+});
+
+Event::register_function('config|noviusos_comments::api', function (&$config) {
+    $blog_config = \Config::application('sdrdis_timeline');
+    if (isset($blog_config['comments']['use_recaptcha'])) {
+        \Log::deprecated(
+            'The key "comments.use_recaptcha" in noviusos_blog config file is deprecated,
+                extend noviusos_comments::api configuration file instead.',
+            'Chiba.2'
+        );
+
+        \Arr::set($config, 'setups.Sdrdis\Timeline\Model_Post', array(
+            'use_recaptcha' => $blog_config['comments']['use_recaptcha'],
+        ));
+    }
+});
 
 \View::redirect('noviusos_blognews::front/post/list', 'sdrdis_timeline::front/post/list');
 \View::redirect('noviusos_blognews::admin/application/popup', 'sdrdis_timeline::admin/application/popup');

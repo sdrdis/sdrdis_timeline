@@ -1,4 +1,3 @@
-<?php
 /**
  * NOVIUS OS - Web OS for digital communication
  *
@@ -8,6 +7,6 @@
  * @link http://www.novius-os.org
  */
 
-$base = \Config::load('noviusos_blognews::config', true);
-$base['application_label'] = __('Timeline');
-return $base;
+ALTER TABLE `sdrdis_timeline_post`
+  ADD `post_publication_start` DATETIME NULL DEFAULT NULL AFTER `post_published` ,
+  ADD `post_publication_end` DATETIME NULL DEFAULT NULL AFTER `post_publication_start`;

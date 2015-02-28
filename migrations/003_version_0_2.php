@@ -8,5 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-$base = \Config::load('noviusos_blognews::controller/admin/application', true);
-return $base;
+namespace Sdrdis\Timeline\Migrations;
+
+class Version_0_2 extends \Nos\Migration
+{
+}

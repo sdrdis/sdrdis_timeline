@@ -8,6 +8,8 @@
  * @link http://www.novius-os.org
  */
 
-$base = \Config::load('noviusos_blognews::config', true);
-$base['application_label'] = __('Timeline');
-return $base;
+namespace Sdrdis\Timeline\Migrations;
+
+class Install extends \Nos\Migration
+{
+}
